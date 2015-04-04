@@ -16,7 +16,12 @@ var renderer = PIXI.autoDetectRenderer(WIDTH, HEIGHT, {
   view: document.getElementById('main')
 });
 
-requestAnimFrame(animate);
+var loader = new PIXI.AssetLoader(['paddle.png', 'ball.png'])
+loader.onComplete = function() {
+  window.console.log('complete');
+  requestAnimFrame(animate);
+}
+loader.load();
 
 var score = 0;
 var scoreText = new PIXI.Text(score, {font:"bold 50px Arial", fill:"#fff"});
